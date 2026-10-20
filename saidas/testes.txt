@@ -1,0 +1,11 @@
+- Exemplo didático: 10 vértices, 4 componentes
+- Casos-limite: vazio, isolados, caminho, completo
+- Arestas paralelas e laços
+- Remoção de arestas divide componentes
+- 500 grafos aleatórios: DFS = BFS = União-Busca = fecho transitivo
+- União-Busca incremental acompanha a DFS aresta a aresta
+- DFS recursiva estoura a pilha; a iterativa não
+- Leitura do arquivo da aplicação
+
+4073 verificações, 0 falha(s)
+TODOS OS TESTES PASSARAM

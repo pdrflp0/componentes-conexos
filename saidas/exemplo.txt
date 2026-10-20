@@ -1,0 +1,32 @@
+Grafo de exemplo: 10 vértices, 7 arestas
+  A-B  A-C  B-D  C-D  E-F  F-G  H-I
+
+DFS iterativa, passo a passo:
+  componente 1: começa em A
+    desempilha A -> descobre: B, C   pilha = [B C]
+    desempilha C -> descobre: D      pilha = [B D]
+    desempilha D -> descobre: -      pilha = [B]
+    desempilha B -> descobre: -      pilha = []
+  componente 2: começa em E
+    desempilha E -> descobre: F      pilha = [F]
+    desempilha F -> descobre: G      pilha = [G]
+    desempilha G -> descobre: -      pilha = []
+  componente 3: começa em H
+    desempilha H -> descobre: I      pilha = [I]
+    desempilha I -> descobre: -      pilha = []
+  componente 4: começa em J
+    desempilha J -> descobre: -      pilha = []
+
+União-Busca, aresta por aresta (começa com 10 conjuntos unitários):
+  unir(A, B): conjuntos distintos -> une   componentes = 9
+  unir(A, C): conjuntos distintos -> une   componentes = 8
+  unir(B, D): conjuntos distintos -> une   componentes = 7
+  unir(C, D): já no mesmo conjunto -> nada componentes = 7
+  unir(E, F): conjuntos distintos -> une   componentes = 6
+  unir(F, G): conjuntos distintos -> une   componentes = 5
+  unir(H, I): conjuntos distintos -> une   componentes = 4
+
+Resultado:
+  DFS          k = 4: {A,B,C,D} {E,F,G} {H,I} {J}
+  BFS          k = 4: {A,B,C,D} {E,F,G} {H,I} {J}
+  União-Busca  k = 4: {A,B,C,D} {E,F,G} {H,I} {J}

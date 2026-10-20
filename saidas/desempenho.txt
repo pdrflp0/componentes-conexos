@@ -1,0 +1,17 @@
+Tempo mediano de 7 execuções (ms), grafos aleatórios com semente fixa
+         V          E          k        DFS        BFS  União-Busca
+     10000       5000       5003       1.16       0.85         3.37
+     10000      10000       1609       1.22       1.46         2.90
+     10000      20000        207       1.54       1.14         1.47
+    100000      50000      50001      11.90      14.57        10.20
+    100000     100000      16279      21.81      12.93         7.66
+    100000     200000       1870      44.86      35.30        16.00
+   1000000     500000     500000     260.46     213.32       105.92
+   1000000    1000000     161868     387.04     313.81       109.38
+   1000000    2000000      19266     521.39     386.46       264.14
+
+DFS recursiva x iterativa num caminho (profundidade = V):
+  V =      1000   recursiva: ok (k = 1)           iterativa: ok (k = 1)
+  V =     10000   recursiva: StackOverflowError   iterativa: ok (k = 1)
+  V =    100000   recursiva: StackOverflowError   iterativa: ok (k = 1)
+  V =   1000000   recursiva: StackOverflowError   iterativa: ok (k = 1)

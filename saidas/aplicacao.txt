@@ -1,0 +1,87 @@
+
+==============================================================================
+ 1. REDE EM CONDIÇÕES NORMAIS
+==============================================================================
+  18 municípios, 21 estradas, 1 componente(s) conexo(s)
+  Bases de apoio: Fortaleza, Aracati, Russas, Limoeiro do Norte
+
+  Estradas críticas (se apenas ela for interditada, a rede se divide):
+    - Aracati -- Icapuí                        isola: Icapuí
+    - Limoeiro do Norte -- Quixeré             isola: Quixeré
+    - Limoeiro do Norte -- Tabuleiro do Norte  isola: Tabuleiro do Norte
+  3 de 21 estradas são críticas.
+
+==============================================================================
+ 2. APÓS A CHEIA
+==============================================================================
+  Estradas interditadas:
+    x Beberibe -- Aracati
+    x Fortim -- Aracati
+    x Palhano -- Aracati
+    x Russas -- Limoeiro do Norte
+    x Morada Nova -- Limoeiro do Norte
+    x Itaiçaba -- Aracati
+    x Jaguaruana -- Itaiçaba
+    x Russas -- Jaguaruana
+  Conferência: DFS = BFS = União-Busca (mesmos componentes)
+
+  Resultado: 5 componentes conexos (antes: 1)
+
+  Componente 1 (11 municípios): Fortaleza, Aquiraz, Pindoretama, Cascavel, Beberibe, Fortim, Pacajus, Chorozinho, Russas, Morada Nova, Palhano
+     situação: atendido por Fortaleza, Russas
+  Componente 2 (2 municípios): Aracati, Icapuí
+     situação: atendido por Aracati
+  Componente 3 (3 municípios): Limoeiro do Norte, Quixeré, Tabuleiro do Norte
+     situação: atendido por Limoeiro do Norte
+  Componente 4 (1 município): Jaguaruana
+     situação: SEM BASE DE APOIO -> socorro aéreo/fluvial
+  Componente 5 (1 município): Itaiçaba
+     situação: SEM BASE DE APOIO -> socorro aéreo/fluvial
+
+  2 componente(s) sem base de apoio.
+
+==============================================================================
+ 3. CONSULTAS DE CONECTIVIDADE (O(1) após rotular)
+==============================================================================
+  Fortaleza -- Aracati                     antes: sim | depois: não
+  Fortaleza -- Fortim                      antes: sim | depois: sim
+  Icapuí -- Aracati                        antes: sim | depois: sim
+  Itaiçaba -- Jaguaruana                   antes: sim | depois: não
+  Quixeré -- Russas                        antes: sim | depois: não
+
+==============================================================================
+ 4. PLANO DE REPARO DA DEFESA CIVIL (simulado com União-Busca)
+==============================================================================
+  Pas. Estrada reaberta                   Efeito       Componentes  Sem base
+  0    (situação após a cheia)            -            5            2
+  1    Beberibe -- Aracati                reconecta    4            2
+  2    Fortim -- Aracati                  redundante   4            2
+  3    Palhano -- Aracati                 redundante   4            2
+  4    Russas -- Limoeiro do Norte        reconecta    3            2
+  5    Morada Nova -- Limoeiro do Norte   redundante   3            2
+  6    Itaiçaba -- Aracati                reconecta    2            1
+  7    Jaguaruana -- Itaiçaba             reconecta    1            0
+  8    Russas -- Jaguaruana               redundante   1            0
+
+  Ordem planejada: todos os grupos com acesso a uma base no passo 7; rede reunificada no passo 7.
+  Estradas que efetivamente reconectaram grupos: 4 de 8.
+
+==============================================================================
+ 5. ORDEM DE REPARO SUGERIDA
+==============================================================================
+  Critério guloso: primeiro as estradas que ligam um grupo SEM base a um grupo COM base;
+  depois, as que unem dois grupos ainda separados; estradas redundantes ficam por último.
+
+  Pas. Estrada reaberta                   Efeito       Componentes  Sem base
+  0    (situação após a cheia)            -            5            2
+  1    Itaiçaba -- Aracati                reconecta    4            1
+  2    Jaguaruana -- Itaiçaba             reconecta    3            0
+  3    Beberibe -- Aracati                reconecta    2            0
+  4    Russas -- Limoeiro do Norte        reconecta    1            0
+  5    Fortim -- Aracati                  redundante   1            0
+  6    Palhano -- Aracati                 redundante   1            0
+  7    Morada Nova -- Limoeiro do Norte   redundante   1            0
+  8    Russas -- Jaguaruana               redundante   1            0
+
+  Ordem sugerida: todos os grupos com acesso a uma base no passo 2; rede reunificada no passo 4.
+  Estradas que efetivamente reconectaram grupos: 4 de 8.
